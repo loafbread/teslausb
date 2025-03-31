@@ -26,7 +26,7 @@ function linksnapshotfiletorecents {
   local file=$1
   local curmnt=$2
   local finalmnt=$3
-  local recents=/mutable/TeslaCam/RecentClips
+  local recents=/mutable/RoadCam/DriveStream
 
   filename=${file##/*/}
   if [[ ! "$filename" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}.* ]]
@@ -43,9 +43,9 @@ function linksnapshotfiletorecents {
 }
 
 function make_links_for_snapshot {
-  local saved=/mutable/TeslaCam/SavedClips
-  local sentry=/mutable/TeslaCam/SentryClips
-  local track=/mutable/TeslaCam/TeslaTrackMode
+  local saved=/mutable/RoadCam/SaveClips
+  local sentry=/mutable/RoadCam/SaveClips
+  local track=/mutable/RoadCam/GearGuardVideo
   if [ ! -d $saved ]
   then
     mkdir -p $saved
@@ -60,13 +60,13 @@ function make_links_for_snapshot {
   local restore_nullglob
   restore_nullglob=$(shopt -p nullglob)
   shopt -s nullglob
-  for f in "$curmnt/TeslaCam/RecentClips/"*
+  for f in "$curmnt/RoadCam/DriveStream/"*
   do
     #log "linking $f"
     linksnapshotfiletorecents "$f" "$curmnt" "$finalmnt"
   done
   # also link in any files that were moved to SavedClips
-  for f in "$curmnt/TeslaCam/SavedClips"/*/*
+  for f in "$curmnt/RoadCam/SaveClips"/*/*
   do
     #log "linking $f"
     linksnapshotfiletorecents "$f" "$curmnt" "$finalmnt"
@@ -80,7 +80,7 @@ function make_links_for_snapshot {
     ln -sf "${f/$curmnt/$finalmnt}" "$saved/$eventtime"
   done
   # and the same for SentryClips
-  for f in "$curmnt/TeslaCam/SentryClips/"*/*
+  for f in "$curmnt/GearGuardVideo/Incidents/"*/*
   do
     #log "linking $f"
     linksnapshotfiletorecents "$f" "$curmnt" "$finalmnt"
@@ -93,7 +93,7 @@ function make_links_for_snapshot {
     ln -sf "${f/$curmnt/$finalmnt}" "$sentry/$eventtime"
   done
   # and finally the TrackMode files
-  for f in "$curmnt/TeslaTrackMode/"*
+  for f in "$curmnt/GearGuardVideo/"*
   do
     if [ ! -d "$track" ]
     then
