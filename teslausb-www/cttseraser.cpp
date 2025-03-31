@@ -33,7 +33,7 @@
   To run manually:
   cttseraser <sourcedir> -f <mountpoint>
   e.g.
-  cttseraser /mutable/TeslaCam -f /var/www/html/TeslaCam
+  cttseraser /mutable/RoadCam -f /var/www/html/RoadCam
 */
 
 #define FUSE_USE_VERSION 30
