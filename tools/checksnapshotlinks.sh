@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 
-BASE=/mutable/TeslaCam
+BASE=/mutable/RoadCam
 REPAIR=false
 if [ "${1:-}" = "repair" ]
 then
@@ -17,7 +17,7 @@ function recentpathfor {
 find -L /backingfiles/snapshots/ -type f -name \*.mp4 | sort -r | {
   while read -r path
   do
-    name=${path##/*TeslaCam/}
+    name=${path##/*RoadCam      mkdir -p /mnt/cam/IncidentCam/}
     if [[ $name == SentryClips/* || $name == SavedClips/* ]]
     then
       if [ ! -L "$BASE/$name" ]
@@ -59,7 +59,7 @@ find -L /backingfiles/snapshots/ -type f -name \*.mp4 | sort -r | {
   done
 }
 
-find /mutable/TeslaCam -xtype l | {
+find /mutable/RoadCam -xtype l | {
   while read -r path
   do
     echo "link target for '$path' does not exist"
