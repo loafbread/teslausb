@@ -44,8 +44,8 @@ function linksnapshotfiletorecents {
 
 function make_links_for_snapshot {
   local saved=/mutable/RoadCam/SaveClips
-  local sentry=/mutable/RoadCam/SaveClips
-  local track=/mutable/RoadCam/GearGuardVideo
+  local sentry=/mutable/GearGuardVideo/Incidents
+  local track=/mutable/RoadCam/DriveStream
   if [ ! -d $saved ]
   then
     mkdir -p $saved
