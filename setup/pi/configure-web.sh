@@ -18,7 +18,7 @@ apt-get -y --force-yes install nginx fcgiwrap libnginx-mod-http-fancyindex fuse 
 # install data files and config files
 systemctl stop nginx.service &> /dev/null || true
 mkdir -p /var/www
-umount /var/www/html/TeslaCam &> /dev/null || true
+umount /var/www/html/RoadCam &> /dev/null || true
 umount /var/www/html/fs/Music &> /dev/null || true
 umount /var/www/html/fs/LightShow &> /dev/null || true
 umount /var/www/html/fs/Boombox &> /dev/null || true
@@ -27,7 +27,7 @@ cp -r "$SOURCE_DIR/teslausb-www/html" /var/www/
 ln -sf /teslausb/teslausb-headless-setup.log /var/www/html/
 ln -sf /mutable/archiveloop.log /var/www/html/
 ln -sf /tmp/diagnostics.txt /var/www/html/
-mkdir -p /var/www/html/TeslaCam
+mkdir -p /var/www/html/RoadCam
 cp -rf "$SOURCE_DIR/teslausb-www/teslausb.nginx" /etc/nginx/sites-available
 ln -sf /etc/nginx/sites-available/teslausb.nginx /etc/nginx/sites-enabled/default
 
@@ -61,8 +61,8 @@ EOF
 chmod +x /sbin/mount.ctts
 
 sed -i '/mount.ctts/d' /etc/fstab
-echo "mount.ctts#/mutable/TeslaCam /var/www/html/TeslaCam fuse defaults,nofail,x-systemd.requires=/mutable 0 0" >> /etc/fstab
-mkdir -p /mutable/TeslaCam
+echo "mount.ctts#/mutable/RoadCam /var/www/html/RoadCam fuse defaults,nofail,x-systemd.requires=/mutable 0 0" >> /etc/fstab
+mkdir -p /mutable/RoadCam
 
 sed -i 's/#user_allow_other/user_allow_other/' /etc/fuse.conf
 
