@@ -690,7 +690,7 @@ install_push_message_scripts /root/bin
 check_archive_configs
 
 rm -f /root/teslausb.conf
-rm -rf /mutable/RoadCam/RecentClips/event.json
+rm -rf /mutable/RoadCam/DriveStream/event.json
 
 archive_module="$( get_archive_module )"
 log_progress "Using archive module: $archive_module"
