@@ -340,7 +340,8 @@ function create_usb_drive_backing_files () {
     if [ -e /backingfiles/cam_disk.bin ] && mount_with_retry /mnt/cam
     then
       mkdir -p /mnt/cam/RoadCam
-      mkdir -p /mnt/cam/GearGuardVideo
+      mkdir -p /mnt/cam/GearGuard
+      mkdir -p /mnt/cam/IncidentCam
       touch /mnt/cam/.metadata_never_index
 
       local -r sentrylist_previously_archived=/mutable/sentry_files_archived
